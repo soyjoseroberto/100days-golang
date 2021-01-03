@@ -17,6 +17,8 @@ func Hello(name string) (string, error) {
 	// If a name was given, return a value that embeds the name
 	// in a greeting message
 	message := fmt.Sprintf(randomFormat(), name)
+	// To make unit test fail, use this line
+	// message := fmt.Sprintf(randomFormat())
 	return message, nil
 }
 
