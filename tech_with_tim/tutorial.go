@@ -40,4 +40,16 @@ func main() {
 	scanner.Scan()
 	birthYear, _ := strconv.ParseInt(scanner.Text(), 10, 64)
 	fmt.Printf("You will turn %d in 2021\n", 2021-birthYear)
+
+	// Casting between number types
+	var number1 int = 9
+	var number2 float64 = 4.0
+	// must cast to the same type
+	fmt.Printf("Casting to int: %d\n", number1/int(number2))
+	// Casting to float
+	fmt.Printf("Casting to float: %g\n", float64(number1)/number2)
+	// Dividing by zero throws a runtime error, not compile time
+	// zeroDivisor := 0
+	// fmt.Printf("%d", number1/zeroDivisor)
+
 }
