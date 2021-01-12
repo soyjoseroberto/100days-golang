@@ -91,6 +91,77 @@ func slicesVideo() {
 
 }
 
+// range, video #14
+func rangeSection() {
+	// init a slice
+	var grades []int = []int{93, 95, 98, 88, 85, 99, 89}
+	// Print the values with regular for loop
+	for i := 0; i < len(grades); i++ {
+		fmt.Println(grades[i])
+	}
+
+	// Now use range to do the same thing. Get the index and the element
+	// Use anonymous variable _ when not needing the index or the element (for _, element := range grades {})
+	for index, element := range grades {
+		fmt.Printf("%d: %d\n", index, element)
+	}
+}
+
+// maps, video #15 for key-value pairs
+func mapsVideo() {
+	var fruitsMap map[string]int = map[string]int{
+		"apples":  5,
+		"pears":   4,
+		"oranges": 10,
+	}
+	fmt.Println(fruitsMap)
+
+	// Add an element by adding a new key
+	fruitsMap["bananas"] = 7
+	// Update an element by using its key
+	fruitsMap["apples"] = 2
+	// Delete using the delete() function
+	delete(fruitsMap, "pears")
+	fmt.Println(fruitsMap)
+	// Check if a key exists on a map
+	val, keyExists := fruitsMap["avocados"]
+	fmt.Printf("Avocados value %v and key exists: %t\n", val, keyExists)
+	// Of course you can get length
+	fmt.Println(len(fruitsMap))
+
+	// Alternative with empty map
+	// fruitsMap := make(map[string]int)
+}
+
+// functions, video #16
+func functionsVideo(x, y int) (sum int, mul int) {
+	// parameters with same type can be separated by comma
+	// you can label return values and have a single return statement
+	defer fmt.Println("This executes after return statement. Good for cleaning up")
+	sum = x + y
+	mul = x * y
+	return
+}
+
+// functions (advance) and closures
+
+func execFunction(passedFunc func(int) int) {
+	fmt.Println(passedFunc(6))
+}
+
+func closuresVideo() {
+	test := func(x int) int {
+		return x * x
+	}
+	execFunction(test)
+}
+
+func closureFunc(name string) func() {
+	return func() {
+		fmt.Println(name)
+	}
+}
+
 func main() {
 	// Declare var with implicit walrus operator
 	x := 10
@@ -153,4 +224,19 @@ func main() {
 
 	// slices, video #13
 	slicesVideo()
+
+	// range, video #14
+	rangeSection()
+
+	// maps, video #15
+	mapsVideo()
+
+	// functions, video #16
+	sum1, mul1 := functionsVideo(9, 5)
+	fmt.Println(sum1, mul1)
+
+	// closures, video #17
+	closuresVideo()
+
+	closureFunc("Roberto")()
 }
