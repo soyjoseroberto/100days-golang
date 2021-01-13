@@ -143,8 +143,7 @@ func functionsVideo(x, y int) (sum int, mul int) {
 	return
 }
 
-// functions (advance) and closures
-
+// functions (advance) and closures, video #17
 func execFunction(passedFunc func(int) int) {
 	fmt.Println(passedFunc(6))
 }
@@ -160,6 +159,30 @@ func closureFunc(name string) func() {
 	return func() {
 		fmt.Println(name)
 	}
+}
+
+// mutable and immutable data types, video #18
+// TL;DR: slices and maps are passed by reference so they are mutable (can change)
+// Not the case with array and value types
+func changeFirstElement(mySlice []int) {
+	mySlice[0] = 100
+}
+
+// pointers and dereference operator (* and &), video #19
+func sayGoodBye(byebye *string) {
+	*byebye = "Good bye!!"
+}
+
+// Point struct for structs, video #20
+type Point struct {
+	x int32
+	y int32
+}
+
+// Circle contains a reference to the Point struct
+type Circle struct {
+	radius float64
+	center *Point
 }
 
 func main() {
@@ -239,4 +262,23 @@ func main() {
 	closuresVideo()
 
 	closureFunc("Roberto")()
+
+	// mutable and immutable data types, video #18
+	someNumbers := []int{99, 101, 102}
+	fmt.Println(someNumbers)
+	changeFirstElement(someNumbers)
+	fmt.Println(someNumbers)
+
+	// pointers and dereference, video #19
+	greeting := "Hello"
+	fmt.Println(greeting)
+	// Pass the pointer (memory address) where "Hello" is located
+	sayGoodBye(&greeting)
+	fmt.Println(greeting)
+
+	// structs, video #20
+	// When you have an embedded struct (Point) use the pointer to it, not the struct itself
+	circle := Circle{2.5, &Point{3, 4}}
+	fmt.Println(circle)
+
 }
