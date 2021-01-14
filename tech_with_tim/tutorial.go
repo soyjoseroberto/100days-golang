@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math"
 	"os"
 	"strconv"
 )
@@ -185,6 +186,50 @@ type Circle struct {
 	center *Point
 }
 
+// Methods, video #21
+// Student example
+type Student struct {
+	name   string
+	grades []int
+	age    int
+}
+
+// If you are not changing the object, it's ok to just pass by value
+func (s Student) allowedToDrink() bool {
+	return s.age >= 21
+}
+
+// When you are changing something in the object, get the pointer to the object
+func (s *Student) changeName(newName string) {
+	s.name = newName
+}
+
+// interfaces, video 22
+
+// Shape interface
+type Shape interface {
+	area() float64
+}
+
+// Rectangle struct will implement Shape
+type Rectangle struct {
+	width  float64
+	height float64
+}
+
+// CircleShape will implement Shape (Had a Cirle struct already)
+type CircleShape struct {
+	radius float64
+}
+
+func (r *Rectangle) area() float64 {
+	return r.width * r.height
+}
+
+func (c *CircleShape) area() float64 {
+	return math.Pi * c.radius * c.radius
+}
+
 func main() {
 	// Declare var with implicit walrus operator
 	x := 10
@@ -280,5 +325,23 @@ func main() {
 	// When you have an embedded struct (Point) use the pointer to it, not the struct itself
 	circle := Circle{2.5, &Point{3, 4}}
 	fmt.Println(circle)
+
+	// methods, video #21
+	student1 := Student{"Jose", []int{89, 90, 85, 97, 92}, 22}
+	fmt.Println(student1.allowedToDrink())
+	fmt.Println(student1)
+	student1.changeName("Dominic")
+	fmt.Println(student1)
+
+	// interfaces, video #22
+	rect := Rectangle{2, 4}
+	circleShape := CircleShape{3}
+
+	// use Shape interface
+	shapes := []Shape{&rect, &circleShape}
+
+	for _, val := range shapes {
+		fmt.Println(val.area())
+	}
 
 }
