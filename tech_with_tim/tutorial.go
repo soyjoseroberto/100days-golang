@@ -187,6 +187,7 @@ type Circle struct {
 }
 
 // Methods, video #21
+
 // Student example
 type Student struct {
 	name   string
@@ -238,10 +239,9 @@ func main() {
 	fmt.Printf("%T\n", x)
 
 	// All types have a default value
-	var y int
-	var firstName string
-	var isHappy bool
-	// 0, empty string, false
+	var y int            // 0
+	var firstName string // empty string
+	var isHappy bool     // false
 	fmt.Printf("Default values: %v, %v, %v\n", y, firstName, isHappy)
 
 	z := 15
